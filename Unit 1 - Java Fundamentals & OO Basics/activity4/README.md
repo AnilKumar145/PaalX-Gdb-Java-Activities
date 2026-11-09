@@ -12,25 +12,31 @@ Write comprehensive automated test cases to verify PIN security, status rules, a
 
 ## Plain English Step-by-Step Instructions
 
-### Step 1: Test Age Validation on Account Creation
+Each step below is one test and prints one line of the Expected Output (Test 1 to Test 6).
+
+### Step 1: Test Underage Customer Rejection
 1. Attempt to create an account with an age less than 18 (e.g., age 16) inside a try-catch block.
 2. Verify that an `IllegalArgumentException` is caught and print `[PASS]`.
 
-### Step 2: Test PIN Verification on Withdrawal
+### Step 2: Test Wrong PIN Rejection
 1. Create an account with PIN `"1234"` and balance 5000.0.
 2. Attempt to withdraw with a wrong PIN (e.g., `"9999"`). Verify that withdrawal returns `false` and balance remains unchanged.
-3. Attempt to withdraw with the correct PIN `"1234"`. Verify that withdrawal returns `true` and balance decreases.
 
-### Step 3: Test PIN Change Functionality
+### Step 3: Test Correct PIN Withdrawal
+1. Withdraw with the correct PIN `"1234"`. Verify that withdrawal returns `true` and balance decreases.
+
+### Step 4: Test PIN Change & Old PIN Invalidation
 1. Change the PIN from `"1234"` to `"5678"`. Verify the change returns `true`.
 2. Try withdrawing with the old PIN `"1234"`. Verify it now fails.
 3. Try withdrawing with the new PIN `"5678"`. Verify it succeeds.
 
-### Step 4: Test Account Suspension and Reactivation
+### Step 5: Test Suspended Account Block
 1. Suspend the account using `suspend()`.
 2. Attempt to withdraw with the correct PIN. Verify that the transaction fails because the account is suspended.
-3. Reactivate the account using `activate()`.
-4. Attempt withdrawal again. Verify that the transaction now succeeds.
+
+### Step 6: Test Reactivation & Success
+1. Reactivate the account using `activate()`.
+2. Attempt withdrawal again. Verify that the transaction now succeeds.
 
 ---
 

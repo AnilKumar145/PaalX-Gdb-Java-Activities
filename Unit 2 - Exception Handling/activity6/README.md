@@ -78,6 +78,6 @@ java -cp bin com.gdb.tests.TestAccountExceptions
 [Test 2] Caught Inactive Account: Account is not active [PASS]
 [Test 3] Caught Invalid Amount: Deposit amount must be positive [PASS]
 [Test 4] Caught Insufficient Funds: Insufficient funds in account [PASS]
-[Test 5] Polymorphic Handler caught: Account is closed [PASS]
+[Test 5] Polymorphic Handler caught: Account is not active [PASS]
 All exception handling tests completed successfully!
 ```

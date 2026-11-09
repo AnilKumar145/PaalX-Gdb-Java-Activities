@@ -19,11 +19,11 @@ Create an array of `AbstractAccount` objects containing different account types 
 Write a method to transfer funds from one account to another:
 1. Attempt to withdraw the amount from the source account using the provided PIN.
 2. If withdrawal succeeds, deposit the amount into the destination account.
-3. If withdrawal throws an exception, ensure the destination account is NOT credited and handle the error gracefully.
+3. If withdrawal throws an exception, ensure the destination account is NOT credited and handle the error gracefully: print `Transfer failed: ` followed by the exception message.
 
 ### Step 3: Process Monthly Banking Cycle
 Loop through the account portfolio and perform monthly account maintenance:
-1. If an account is a `SavingsAccount`, apply its monthly interest to the balance.
+1. If an account is a `SavingsAccount`, call `applyInterest()`. Note that it adds the full `interestRate` (4.0%) each time it is called; it is not divided into a monthly rate.
 2. If an account is a `SalaryAccount`, check its salary credit history.
 
 ---
@@ -68,6 +68,7 @@ java -cp bin com.gdb.tests.TestAbstractAccount
 === Activity 10: Banking Operations Suite ===
 Transfer Rs 3000 from Savings to Current: SUCCESS
 Savings Balance: Rs 7000.0 | Current Balance: Rs 8000.0
+Transfer failed: Invalid PIN entered
 Failed Transfer (Wrong PIN): Exception caught, no balance changed [PASS]
 Monthly Interest Cycle processed for all qualifying accounts.
 All banking operations passed!

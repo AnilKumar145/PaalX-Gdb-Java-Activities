@@ -5,10 +5,10 @@ Override methods in account subclasses to implement specialized withdrawal busin
 
 ---
 
-## Target Files to Complete
-- `src/com/gdb/domain/SavingsAccount.java`
-- `src/com/gdb/domain/CurrentAccount.java`
-- `src/com/gdb/domain/FixedDepositAccount.java`
+## Target File to Complete
+- `src/com/gdb/tests/TestAccountSubclasses.java`
+
+The domain classes in `src/com/gdb/domain` are provided complete. Steps 1-3 explain the overridden `withdraw()` methods they contain; Step 4 is the test code you write.
 
 ---
 
@@ -16,9 +16,9 @@ Override methods in account subclasses to implement specialized withdrawal busin
 
 ### Step 1: Override Withdrawal in `SavingsAccount`
 1. Override the `withdraw` method.
-2. Check if the withdrawal would leave the balance below `minBalance`.
-3. If it violates minimum balance, throw `MinimumBalanceViolationException`.
-4. If valid, call the parent class withdrawal method using `super.withdraw(...)`.
+2. Validate PIN, account status, and positive amount (the same checks as `Account.withdraw`).
+3. Check if the withdrawal would leave the balance below `minBalance`.
+4. If it violates minimum balance, throw `MinimumBalanceViolationException`; otherwise deduct the amount.
 
 ### Step 2: Override Withdrawal in `CurrentAccount`
 1. Override the `withdraw` method.
@@ -30,6 +30,13 @@ Override methods in account subclasses to implement specialized withdrawal busin
 ### Step 3: Override Withdrawal in `FixedDepositAccount`
 1. Override the `withdraw` method.
 2. Throw an `AccountException` indicating that premature withdrawals are not permitted on Fixed Deposit accounts before maturity.
+
+### Step 4: Write the Polymorphism Tests
+In `TestAccountSubclasses.java`, declare every account with the parent type `Account` so the overridden `withdraw()` is chosen at runtime:
+1. `SavingsAccount` (balance 10000.0, minBalance 1000.0): withdraw 9500.0, catch `MinimumBalanceViolationException`, print `[PASS]`.
+2. `CurrentAccount` (balance 5000.0, overdraftLimit 25000.0): withdraw 10000.0, verify the balance becomes -5000.0, print `[PASS]`.
+3. Same account: withdraw 30000.0, catch `InsufficientBalanceException`, print `[PASS]`.
+4. `FixedDepositAccount`: attempt any withdrawal, catch `AccountException`, print `[PASS]`.
 
 ---
 
